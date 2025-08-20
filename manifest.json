@@ -1,0 +1,55 @@
+{
+  "manifest_version": 3,
+  "name": "VibeTag",
+  "version": "1.0.0",
+  "description": "Save and search memories about LinkedIn connections with Google Drive sync",
+
+  "permissions": ["storage", "activeTab", "identity", "tabs"],
+
+  "host_permissions": ["*://www.linkedin.com/*", "*://linkedin.com/*"],
+
+  "oauth2": {
+    "client_id": "237226673500-j7go9anmsi7u5ib16p2182o0ru1msmbm.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive.appdata",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://www.linkedin.com/*", "*://linkedin.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VibeTag",
+    "default_icon": {
+      "16": "icons/penguin.png",
+      "32": "icons/penguin.png",
+      "48": "icons/penguin.png",
+      "128": "icons/penguin.png"
+    }
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "icons": {
+    "16": "icons/penguin.png",
+    "32": "icons/penguin.png",
+    "48": "icons/penguin.png",
+    "128": "icons/penguin.png"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/penguin.png", "icons/penguin-sad.png"],
+      "matches": ["*://www.linkedin.com/*", "*://linkedin.com/*"]
+    }
+  ]
+}

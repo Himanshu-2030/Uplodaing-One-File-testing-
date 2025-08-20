@@ -1,0 +1,244 @@
+/* LinkedIn Memory Search - Modern Content Styles */
+
+#lnms-memory-card {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 340px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3), 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    z-index: 999999;
+    animation: lnms-slide-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 14px;
+    overflow: hidden;
+}
+
+@keyframes lnms-slide-in {
+    from {
+        transform: translateY(30px) translateX(20px) scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.lnms-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lnms-card-title {
+    font-size: 24px;
+    margin: 0;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lnms-controls {
+    display: flex;
+    gap: 8px;
+}
+
+
+.lnms-control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    backdrop-filter: blur(10px);
+}
+
+.lnms-control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.lnms-delete-btn:hover {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    border-color: rgba(238, 90, 36, 0.5);
+}
+
+.lnms-card-body {
+    padding: 20px;
+    background: white;
+}
+
+.lnms-profile-info {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f1f3f4;
+}
+
+.lnms-profile-name {
+    font-weight: 700;
+    font-size: 18px;
+    color: #2c3e50;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.lnms-profile-details {
+    font-size: 13px;
+    color: #718096;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.lnms-tags-section {
+    margin-bottom: 16px;
+}
+
+.lnms-quick-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.lnms-quick-tag {
+    padding: 8px 12px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.lnms-quick-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+}
+
+.lnms-quick-tag.selected {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+.lnms-textarea {
+    width: 100%;
+    min-height: 90px;
+    max-height: 140px;
+    height: 90px;
+    padding: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+    color: #2d3748;
+}
+
+.lnms-textarea:focus {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    transform: scale(1.02);
+}
+
+.lnms-textarea::placeholder {
+    color: #a0aec0;
+    font-style: italic;
+}
+
+.lnms-note-hint {
+    font-size: 12px;
+    color: #718096;
+    margin-top: 12px;
+    line-height: 1.4;
+    padding: 8px 12px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 3px solid #667eea;
+}
+
+/* Collapsed state */
+#lnms-memory-fab {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4), 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 28px;
+    z-index: 999999;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: none;
+}
+
+#lnms-memory-fab:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 16px 32px rgba(102, 126, 234, 0.5), 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#lnms-memory-fab.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: lnms-fab-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes lnms-fab-in {
+    from {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Hide card */
+#lnms-memory-card.hidden {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    #lnms-memory-card {
+        width: calc(100vw - 32px);
+        right: 16px;
+        left: 16px;
+    }
+
+    #lnms-memory-fab {
+        right: 16px;
+        bottom: 16px;
+    }
+}

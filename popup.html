@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>VibeTag</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="auth.css">
+    <meta name="viewport" content="width=420, height=600">
+</head>
+
+<body>
+    <!-- Fixed Header Section -->
+    <div class="header">
+        <div class="search-container">
+            <div class="search-icon">
+                <img src="icons/penguin.png" alt="Penguin" class="penguin-icon">
+            </div>
+            <input id="searchInput" type="text" placeholder="Search by name, event, moment..." autocomplete="off">
+            <div class="google-sync" id="googleSync">
+                <!-- Not connected state -->
+                <button id="connectGoogle" class="google-btn" title="Connect Google Drive for backup">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIyLjU2IDEyLjI1YzAtLjc4LS4wNy0xLjUzLS4yLTIuMjVIMTJ2NC4yNmg1LjkyYy0uMjYgMS4zNy0xLjA0IDIuNTMtMi4yMSAzLjMxdjIuNzdoMy41N2MyLjA4LTEuOTIgMy4yOC00Ljc0IDMuMjgtOC4wOXoiIGZpbGw9IiM0Mjg1RjQiLz4KPHBhdGggZD0iTTEyIDIzYzIuOTcgMCA1LjQ2LS45OCA3LjI4LTIuNjZsLTMuNTctMi43N2MtLjk4LjY2LTIuMjMgMS4wNi0zLjcxIDEuMDYtMi44NiAwLTUuMjktMS45My02LjE2LTQuNTNIMi4xOXYyLjg0QzMuOTkgMjAuNTMgNy43IDIzIDEyIDIzeiIgZmlsbD0iIzM0QTg1MyIvPgo8cGF0aCBkPSJNNS44NCAxNC4wOWMtLjIyLS42Ni0uMzUtMS4zNi0uMzUtMi4wOXMuMTMtMS40My4zNS0yLjA5VjcuMDdIMi4xOUMxLjQzIDguNTUgMSAxMC4yMiAxIDEycy40MyAzLjQ1IDEuMTkgNC45M2w0LjY1LTIuODR6IiBmaWxsPSIjRkJCQzA1Ii8+CjxwYXRoIGQ9Ik0xMiA1LjM4YzEuNjIgMCAzLjA2LjU2IDQuMjEgMS42NGwzLjE1LTMuMTVDMTcuNDUgMi4wOSAxNC45NyAxIDEyIDEgNy43IDEgMy45OSAzLjQ3IDIuMTkgNy4wN2w0LjY1IDIuODRjLjg3LTIuNiAzLjMtNC41MyA2LjE2LTQuNTN6IiBmaWxsPSIjRUE0MzM1Ii8+Cjwvc3ZnPgo="
+                        alt="Google">
+                    Connect Drive
+                </button>
+
+                <!-- Connected state (hidden by default) -->
+                <div id="googleConnected" class="google-connected hidden">
+                    <img id="userAvatar" class="user-avatar" src="" alt="User">
+                    <div class="sync-indicator">
+                        <span id="syncStatusIcon">🟢</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-row">
+            <div class="tag-filters" id="tagFilters">
+                <span class="filter-tag active" data-tag="">All</span>
+            </div>
+            <div class="result-count" id="resultCount">0 memories</div>
+        </div>
+
+
+    </div>
+
+    <!-- Scrollable Results Section -->
+    <div id="results" class="results"></div>
+
+    <!-- Empty State with Animated Sad Penguin -->
+    <div id="emptyState" class="empty-state">
+        <div class="empty-icon">
+            <div class="sad-penguin-animated">
+                <img src="icons/penguin-sad.png" alt="Sad Penguin" class="penguin-icon sad-penguin">
+            </div>
+        </div>
+        <div class="empty-text">Oops! I haven't found any memories yet.<br>Start adding some!</div>
+    </div>
+    <div id="customModal" class="custom-modal-overlay">
+        <div class="custom-modal">
+            <div class="modal-header">
+                <span class="modal-icon">🔌</span>
+                <h3 class="modal-title">Disconnect from Google Drive?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message">Are you sure you want to disconnect from Google Drive?</p>
+                <div class="modal-submessage">
+                    Your local memories will remain safe, but won't sync to Google Drive anymore.
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn modal-btn-secondary" id="cancelBtn">Cancel</button>
+                    <button class="modal-btn modal-btn-danger" id="disconnectBtn">Disconnect</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
