@@ -958,6 +958,34 @@ class ModernMemorySearch {
     this.editingCard = card;
   }
 
+  toggleEditQuickTag(tagElement, editTextarea, memory) {
+    const tag = tagElement.dataset.tag;
+    const tagText = `#${tag.toLowerCase()}`;
+
+    if (tagElement.classList.contains("selected")) {
+      tagElement.classList.remove("selected");
+      const currentNote = editTextarea.value;
+      const tagRegex = new RegExp(`(^|\\s)${tagText}(\\s|$)`, "gi");
+      editTextarea.value = currentNote
+        .replace(tagRegex, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    } else {
+      tagElement.classList.add("selected");
+      const currentNote = editTextarea.value.trim();
+      const tagRegex = new RegExp(`(^|\\s)${tagText}(\\s|$)`, "i");
+      if (!tagRegex.test(currentNote.toLowerCase())) {
+        editTextarea.value = currentNote + (currentNote ? " " : "") + tagText;
+      }
+    }
+
+    this.autoResizeTextarea(editTextarea);
+    const card = tagElement.closest(".result-card");
+    const saveIndicator = card.querySelector(".save-indicator");
+    this.handleAutoSave(memory, editTextarea.value, card, saveIndicator);
+    editTextarea.focus();
+  }
+
   setupEditQuickTags(card, memory) {
     const quickTags = card.querySelectorAll(".edit-quick-tag");
     const editTextarea = card.querySelector(".edit-textarea");
@@ -979,37 +1007,14 @@ class ModernMemorySearch {
 
     card.querySelectorAll(".edit-quick-tag").forEach((tag) => {
       const tagText = `#${tag.dataset.tag.toLowerCase()}`;
-      if (noteText.includes(tagText)) {
+      // Better detection with word boundaries
+      const tagRegex = new RegExp(`(^|\\s)${tagText}(\\s|$)`, "i");
+      if (tagRegex.test(noteText)) {
         tag.classList.add("selected");
       } else {
         tag.classList.remove("selected");
       }
     });
-  }
-
-  toggleEditQuickTag(tagElement, editTextarea, memory) {
-    const tag = tagElement.dataset.tag;
-    const tagText = `#${tag.toLowerCase()}`;
-
-    if (tagElement.classList.contains("selected")) {
-      tagElement.classList.remove("selected");
-      const currentNote = editTextarea.value;
-      editTextarea.value = currentNote
-        .replace(new RegExp(`\\s*${tagText}\\b`, "gi"), "")
-        .trim();
-    } else {
-      tagElement.classList.add("selected");
-      const currentNote = editTextarea.value;
-      if (!currentNote.toLowerCase().includes(tagText)) {
-        editTextarea.value = currentNote + (currentNote ? " " : "") + tagText;
-      }
-    }
-
-    this.autoResizeTextarea(editTextarea);
-    const card = tagElement.closest(".result-card");
-    const saveIndicator = card.querySelector(".save-indicator");
-    this.handleAutoSave(memory, editTextarea.value, card, saveIndicator);
-    editTextarea.focus();
   }
 
   exitEditMode(card) {
